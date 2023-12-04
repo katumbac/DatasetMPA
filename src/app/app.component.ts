@@ -4,13 +4,26 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component'
 import { FooterComponent } from './shared/footer/footer.component'
 import { IndexComponent } from './pages/index/index.component';
+import { HttpClientModule } from  '@angular/common/http';
+import { Netflix } from './interfaces/netflix';
+import { NetflixService } from './providers/netflix.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,NavbarComponent,FooterComponent,IndexComponent],
+  imports: [CommonModule, RouterOutlet,NavbarComponent,FooterComponent,IndexComponent,HttpClientModule],
+  providers: [NetflixService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  public data : Netflix[] = [];
+  constructor(private dataProvider: NetflixService) { }
   title = 'mpa';
+
+  ngOnInit() {
+    this.dataProvider.getResponse().subscribe((response) => { 
+      let dataArray = (response as Netflix[]); 
+      this.data = dataArray.slice(0,10);
+    })
+  }
 }
