@@ -16,14 +16,6 @@ import { NetflixService } from './providers/netflix.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  public data : Netflix[] = [];
-  constructor(private dataProvider: NetflixService) { }
   title = 'mpa';
 
-  ngOnInit() {
-    this.dataProvider.getResponse().subscribe((response) => { 
-      let dataArray = (response as Netflix[]); 
-      this.data = dataArray.slice(0,10);
-    })
-  }
 }
