@@ -7,6 +7,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { Netflix } from './interfaces/netflix';
 import { NetflixService } from './providers/netflix.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
